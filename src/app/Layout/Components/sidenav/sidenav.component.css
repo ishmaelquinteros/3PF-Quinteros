@@ -1,0 +1,32 @@
+.material-container {
+  
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+.main-content{
+    height: 95%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.lista-menu{
+  background-color:aliceblue;
+  height: 100%;
+  width: 15%;
+}
+
+.router-outlet-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
