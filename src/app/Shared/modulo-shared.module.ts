@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatTableModule} from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
@@ -18,7 +19,8 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDividerModule } from '@angular/material/divider';
-
+import { MatDialogModule} from '@angular/material/dialog'
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [],
@@ -41,6 +43,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatNativeDateModule,
     MatProgressBarModule,
     MatExpansionModule,
+    MatDialogModule,
     MatDividerModule
   ],
   exports:[
@@ -61,7 +64,9 @@ import { MatDividerModule } from '@angular/material/divider';
     MatNativeDateModule,
     MatProgressBarModule,
     MatExpansionModule,
-    MatDividerModule
+    MatDividerModule,
+    ReactiveFormsModule,
+    MatTableModule,
   ]
 })
 export class ModuloSharedModule { }
