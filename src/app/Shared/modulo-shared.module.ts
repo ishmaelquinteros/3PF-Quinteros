@@ -22,6 +22,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatDialogModule} from '@angular/material/dialog'
 import { ReactiveFormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [],
   imports: [
@@ -67,6 +68,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatDividerModule,
     ReactiveFormsModule,
     MatTableModule,
+    MatDialogModule
   ]
 })
 export class ModuloSharedModule { }

@@ -1,8 +1,10 @@
 .panel{
+    margin: 1rem;
+    padding-left: 1rem;
     width: 800px;
 }
 .tabla{
-    margin-top: 1rem;
+    margin: 1rem;
     width: 1000px;
     height: auto;
 }

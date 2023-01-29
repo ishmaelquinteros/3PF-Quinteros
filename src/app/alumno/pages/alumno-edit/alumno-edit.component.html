@@ -1,1 +1,29 @@
-<p>alumno-edit works!</p>
+<h1 mat-dialog-title>Editar Estudiante</h1>
+<div mat-dialog-content>
+  <p>Modificar información del alumno</p>
+  
+  <form [formGroup]="FormModificarAlumno">
+  
+  <mat-form-field appearance="fill">
+    <mat-label>Nombres</mat-label>
+    <input [formControl] = "nombreControl" matInput required>
+  </mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Apellido</mat-label>
+  <input [formControl] = "apellidoControl" matInput required>
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>E-mail</mat-label>
+  <input [formControl] = "mailControl" matInput required type="email">
+</mat-form-field>
+
+</form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)=Cerrar() cdkFocusInitial>Guardar</button>
+  <button [matDialogClose] cdkFocusInitial>Cerrar</button>
+  <small class="alert alert-danger ml-2"  *ngIf="mensaje">{{ mensaje }} </small>
+</div>
+

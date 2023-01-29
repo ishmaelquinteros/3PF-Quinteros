@@ -1,8 +1,8 @@
 export interface Alumnos {
     id: string,
-    nombre: string,
+    nombres: string,
     apellido: string,
-    mail: string,
+    email: string,
     estado: boolean,
     curso: [],
 }

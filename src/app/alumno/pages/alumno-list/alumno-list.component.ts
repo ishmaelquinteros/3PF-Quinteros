@@ -18,13 +18,13 @@ export class AlumnoListComponent implements OnInit {
   mensaje: string = "";
   displayedColumns = ["id", "nombre", "apellido", "mail", "estado", "editar", "eliminar", "ver cursos"]
   
-  dniControl = new FormControl('',[Validators.minLength(8), Validators.pattern("^[0-9]+")])
+  idControl = new FormControl('',[Validators.minLength(1), Validators.pattern("^[0-9]+")])
   nombreControl = new FormControl('',[Validators.minLength(4), Validators.pattern("[a-zA-Z]*")])
   apellidoControl = new FormControl('',[Validators.minLength(4),Validators.pattern("[a-zA-Z]*")])
   mailControl = new FormControl('',[Validators.email]);
 
   estudiantesForm = new FormGroup({
-    dni: this.dniControl,
+    id: this.idControl,
     nombre: this.nombreControl,
     apellido: this.apellidoControl,
     mail: this.mailControl,
@@ -33,7 +33,16 @@ export class AlumnoListComponent implements OnInit {
 
   onSubmit(){
     if (this.estudiantesForm.valid){
-      console.log(this.estudiantesForm);
+      this.alumnoService.agregarAlumno(
+        {
+        id: this.idControl.value!,  
+        nombres: this.nombreControl.value!,
+        apellido: this.apellidoControl.value!,
+        email: this.mailControl.value!,
+        estado: true,
+        curso: []  
+      })
+      this.alumnos$ = this.alumnoService.getAlumnosApi()
       this.estudiantesForm.reset();
       this.mensaje="";
     } else {
@@ -49,21 +58,18 @@ export class AlumnoListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.alumnos$)
+    this.alumnos$ = this.alumnoService.alumno$;
   }
 
   borrarEstudiante(alumno : Alumnos){
-    console.log(alumno)
-    //this.estudiantes = this.estudiantes.filter((estudiante) => estudiante.id !== alumno.id)
+    this.alumnoService.eliminarAlumno(alumno)
   }
 
   editEstudiante(alumno: Alumnos){
     const dialog = this.dialogService.open(AlumnoEditComponent, {data: alumno})
 
     dialog.afterClosed().subscribe((data)=>{
-      console.log(data);
-      //this.alumnos$ = this.estudiantes.map((estudiante)=> estudiante.id === alumno.id ? {
-      //  ...estudiante, ...data} : estudiante)
+      this.alumnoService.editarAlumno(data)
     })
   }
   
@@ -76,9 +82,9 @@ export class AlumnoListComponent implements OnInit {
       //   ...estudiante, ...data} : estudiante)
     })
   }
-  cambiarEstado(estudiante : Alumnos){
-    //estudiante.estado = !estudiante.estado;
-    //alert("Cambiar el estado del alumno" + " " + estudiante.nombre + " " + estudiante.apellido)
+  cambiarEstado(alumno : Alumnos){
+    alumno.estado = !alumno.estado;
+    this.alumnoService.estadoAlumno(alumno)
 }
 
 }
