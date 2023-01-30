@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>Editar Curso</h1>
+<div mat-dialog-content>
+  <h4>Modificar información del curso</h4>
+  
+  <form [formGroup]="FormCurso">
+  
+  <mat-form-field appearance="fill">
+    <mat-label>Nombres</mat-label>
+    <input [formControl] = "nombreControl" matInput required>
+  </mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Apellido</mat-label>
+  <input [formControl] = "descripcionControl" matInput required>
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Horas del curso</mat-label>
+  <input [formControl] = "horasControl" matInput required type="number">
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+    <mat-label>Fecha de inicio</mat-label>
+    <input [formControl] = "fechaControl" matInput required type="date">
+  </mat-form-field>
+</form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)=Cerrar() cdkFocusInitial>Guardar</button>
+  <button [matDialogClose] cdkFocusInitial>Cerrar</button>
+  <small class="alert alert-danger ml-2"  *ngIf="mensaje">{{ mensaje }} </small>
+</div>
+
+

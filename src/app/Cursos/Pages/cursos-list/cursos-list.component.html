@@ -2,13 +2,13 @@
     <mat-accordion class="panel">
         <mat-expansion-panel hideToggle class="w-100">
           <mat-expansion-panel-header>
-            <mat-panel-title> Agregar alumno</mat-panel-title>
+            <mat-panel-title> Agregar curso</mat-panel-title>
           </mat-expansion-panel-header>
           <mat-panel-description>
-            Agregar datos del nuevo alumno
+            Agregar datos del nuevo curso
           </mat-panel-description>
          
-          <form [formGroup]="estudiantesForm">
+          <form [formGroup]="cursosForm">
 
             <mat-form-field class="fill">
               <mat-label>Nombre</mat-label>
@@ -16,13 +16,18 @@
             </mat-form-field>
           
           <mat-form-field class="fill">
-            <mat-label>Apellido</mat-label>
-            <input type="text" [formControl]="apellidoControl" matInput placeholder="Ingrese apellido" required>
+            <mat-label>Descripcion</mat-label>
+            <input type="text" [formControl]="descripcionControl" matInput placeholder="Ingrese Descripcion" required>
           </mat-form-field>
 
           <mat-form-field class="fill">
-            <mat-label>E-mail</mat-label>
-            <input [formControl]="mailControl" matInput placeholder="Ingrese mail" required>
+            <mat-label>Horas del curso</mat-label>
+            <input [formControl]="horasControl" matInput type="number" placeholder="Ingrese horas" required>
+          </mat-form-field>
+
+          <mat-form-field class="fill">
+            <mat-label>Fecha inicio</mat-label>
+            <input [formControl]="fechaControl" matInput type="date" placeholder="Ingrese fecha inicio">
           </mat-form-field>
         
         <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">Agregar</button>
@@ -31,7 +36,7 @@
         </mat-expansion-panel>
     </mat-accordion>
 
-    <table mat-table [dataSource]="(alumnos$ | async ) || []" class="mat-elevation-z8 tabla">
+    <table mat-table [dataSource]="(cursos$ | async ) || []" class="mat-elevation-z8 tabla">
   
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> ID </th>
@@ -40,43 +45,41 @@
   
     <ng-container matColumnDef="nombre">
       <th mat-header-cell *matHeaderCellDef> Nombre </th>
-      <td mat-cell *matCellDef="let element"> {{element.nombres}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
     </ng-container>
   
-    <ng-container matColumnDef="apellido">
-      <th mat-header-cell *matHeaderCellDef> Apellido </th>
-      <td mat-cell *matCellDef="let element"> {{element.apellido}} </td>
+    <ng-container matColumnDef="descripcion">
+      <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+      <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
     </ng-container>
   
-    <ng-container matColumnDef="mail">
-      <th mat-header-cell *matHeaderCellDef> Mail </th>
-      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    <ng-container matColumnDef="horasTotal">
+      <th mat-header-cell *matHeaderCellDef> Horas del curso </th>
+      <td mat-cell *matCellDef="let element"> {{element.horasTotal}} </td>
     </ng-container>
     
-    <ng-container matColumnDef="estado">
-      <th mat-header-cell *matHeaderCellDef>Estado</th>
-      <td mat-cell *matCellDef="let element">
-        <mat-slide-toggle (change)="cambiarEstado(element)" [checked]="element.estado">{{element.estado }}</mat-slide-toggle> 
-      </td>
-    </ng-container>
+    <ng-container matColumnDef="fechaInicio">
+        <th mat-header-cell *matHeaderCellDef> Fecha de inicio </th>
+        <td mat-cell *matCellDef="let element"> {{element.fechaInicio | date}} </td>
+      </ng-container>
     
     <ng-container matColumnDef="editar">
         <th mat-header-cell *matHeaderCellDef> Editar </th>
         <td mat-cell *matCellDef="let element">
-          <button mat-icon-button color="primary" (click)="editEstudiante(element)">
+          <button mat-icon-button color="primary" (click)="editCurso(element)">
             <mat-icon>edit</mat-icon></button></td>
       </ng-container>
 
       <ng-container matColumnDef="eliminar">
         <th mat-header-cell *matHeaderCellDef> Eliminar </th>
         <td mat-cell *matCellDef="let element">
-            <button mat-icon-button color="warn" (click)="borrarEstudiante(element)">
+            <button mat-icon-button color="warn" (click)="borrarCurso(element)">
                 <mat-icon>delete</mat-icon></button>
         </td>
       </ng-container>
 
       <ng-container matColumnDef="ver cursos">
-        <th mat-header-cell *matHeaderCellDef> Ver cusos </th>
+        <th mat-header-cell *matHeaderCellDef> Ver alumnos </th>
         <td mat-cell *matCellDef="let element">
             <button mat-icon-button color="primary" (click)="verCursos(element)">
                 <mat-icon>edit_note</mat-icon></button>
@@ -86,3 +89,4 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 </div>
+

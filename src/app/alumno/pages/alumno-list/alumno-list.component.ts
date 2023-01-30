@@ -15,27 +15,38 @@ export class AlumnoListComponent implements OnInit {
   
   public alumnos$: Observable<Alumnos[]>;
   
+  private ultimoID!: string
+  
   mensaje: string = "";
   displayedColumns = ["id", "nombre", "apellido", "mail", "estado", "editar", "eliminar", "ver cursos"]
   
-  idControl = new FormControl('',[Validators.minLength(1), Validators.pattern("^[0-9]+")])
   nombreControl = new FormControl('',[Validators.minLength(4), Validators.pattern("[a-zA-Z]*")])
   apellidoControl = new FormControl('',[Validators.minLength(4),Validators.pattern("[a-zA-Z]*")])
   mailControl = new FormControl('',[Validators.email]);
 
   estudiantesForm = new FormGroup({
-    id: this.idControl,
     nombre: this.nombreControl,
     apellido: this.apellidoControl,
     mail: this.mailControl,
   })
+
   panelOpenState = false;
+  
+  constructor(
+    private dialogService: MatDialog,
+    private alumnoService: AlumnosService 
+  ) { 
+    //this.alumnos$ = this.alumnoService.getAlumnosApi();
+    this.alumnos$ = this.alumnoService.alumno$;
+  }
+
+  ngOnInit(): void {}
 
   onSubmit(){
     if (this.estudiantesForm.valid){
       this.alumnoService.agregarAlumno(
         {
-        id: this.idControl.value!,  
+        id: this.ultimoID,  
         nombres: this.nombreControl.value!,
         apellido: this.apellidoControl.value!,
         email: this.mailControl.value!,
@@ -45,24 +56,15 @@ export class AlumnoListComponent implements OnInit {
       this.alumnos$ = this.alumnoService.getAlumnosApi()
       this.estudiantesForm.reset();
       this.mensaje="";
+      this.panelOpenState = false;
     } else {
       this.mensaje = "existen campos inválidos";
     }      
   }
 
-  constructor(
-    private dialogService: MatDialog,
-    private alumnoService: AlumnosService 
-  ) { 
-    this.alumnos$ = this.alumnoService.getAlumnosApi();
-  }
-
-  ngOnInit(): void {
-    this.alumnos$ = this.alumnoService.alumno$;
-  }
-
   borrarEstudiante(alumno : Alumnos){
     this.alumnoService.eliminarAlumno(alumno)
+    this.alumnos$ = this.alumnoService.getAlumnosApi();
   }
 
   editEstudiante(alumno: Alumnos){
@@ -78,8 +80,7 @@ export class AlumnoListComponent implements OnInit {
 
     dialog.afterClosed().subscribe((data)=>{
       console.log(data);
-      // this.estudiantes = this.estudiantes.map((estudiante)=> estudiante.id === alumno.id ? {
-      //   ...estudiante, ...data} : estudiante)
+     
     })
   }
   cambiarEstado(alumno : Alumnos){

@@ -30,9 +30,8 @@ export class AlumnosService {
   }    
   
   eliminarAlumno(alumno: Alumnos) {
-  
     this.httpClient.delete(`${this.UrlApi}/${alumno.id}`).subscribe(_ => {
-      let nuevaLista = this.alumnos.getValue().filter( p => p.id !== alumno.id);
+      let nuevaLista = this.alumnos.getValue().filter( alum => alum.id !== alumno.id);
       this.alumnos.next(nuevaLista);
     });
   }
