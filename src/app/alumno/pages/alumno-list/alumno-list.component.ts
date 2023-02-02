@@ -51,7 +51,7 @@ export class AlumnoListComponent implements OnInit {
         apellido: this.apellidoControl.value!,
         email: this.mailControl.value!,
         estado: true,
-        curso: []  
+        cursos: {'idCurso':"",'nombreCurso':""}
       })
       this.alumnos$ = this.alumnoService.getAlumnosApi()
       this.estudiantesForm.reset();
@@ -78,14 +78,13 @@ export class AlumnoListComponent implements OnInit {
   verCursos(alumno: Alumnos){
     const dialog = this.dialogService.open(AlumnoVerComponent, {data: alumno})
 
-    dialog.afterClosed().subscribe((data)=>{
-      console.log(data);
-     
-    })
+    // dialog.afterClosed().subscribe( (alumno) =>{
+    //   window.alert(`Se agrego el curso ${ alumno.cursos}  al alumno ${alumno.nombre}`)
+    // })
   }
   cambiarEstado(alumno : Alumnos){
     alumno.estado = !alumno.estado;
-    this.alumnoService.estadoAlumno(alumno)
+    this.alumnoService.editarAlumno(alumno)
 }
 
 }

@@ -23,8 +23,8 @@ export class CursosEditComponent implements OnInit {
       id: this.idControl,
       nombre: this.nombreControl,
       descripcion: this.descripcionControl,
-      horas: this.horasControl,
-      fecha: this.fechaControl,
+      horasTotal: this.horasControl,
+      fechaInicio: this.fechaControl,
     })
     
   constructor(

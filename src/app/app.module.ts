@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MLayoutRoutesRoutingModule } from './Layout/m-layout-routes-routing.module';
 import { MLayoutModule } from './Layout/m-layout.module';
+import { ModLoginModule } from './Login/mod-login.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { MLayoutModule } from './Layout/m-layout.module';
     HttpClientModule,
     MLayoutRoutesRoutingModule,
     MLayoutModule,
+    ModLoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]

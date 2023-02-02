@@ -4,5 +4,10 @@ export interface Alumnos {
     apellido: string,
     email: string,
     estado: boolean,
-    curso: [],
+    cursos: AlumnoCurso,
+}
+
+export interface AlumnoCurso{
+    idCurso: string,
+    nombreCurso: string,
 }

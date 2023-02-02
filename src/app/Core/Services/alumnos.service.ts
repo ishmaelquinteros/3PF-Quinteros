@@ -56,11 +56,4 @@ export class AlumnosService {
     });
   }
 
-  estadoAlumno(alumno: Alumnos){
-    this.httpClient.put(`${this.UrlApi}/${alumno.id}`, alumno).subscribe(_ => {
-      let nuevaLista = this.alumnos.getValue().map(alumn => alumn.id === alumno.id ? alumno : alumn);
-      this.alumnos.next(nuevaLista);
-    })
-  }
-
 }
