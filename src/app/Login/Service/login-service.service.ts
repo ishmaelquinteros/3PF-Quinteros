@@ -31,6 +31,10 @@ export class LoginServiceService {
   ));
 };
 
+obtenerUsuarios(){
+  return this.http.get<User>("https://63d9687fbaa0f79e09bb9ed7.mockapi.io/app/users/")
+
+}
 setToken(token: string){
   localStorage.setItem('token', token)
 }
@@ -40,7 +44,7 @@ checkToken (){
   userToken ? this.loggedIn.next(true) : this.logout()
 }
 
-getUser(){
+getUserLocalStorage(){
   return localStorage.getItem('user')
 }
 
@@ -49,7 +53,7 @@ logout(){
   this.loggedIn.next(false)
 }
 
-obtenerUsuario(id: string){
+obtenerUsuarioId(id: string){
   return this.http.get<User>(`https://63d9687fbaa0f79e09bb9ed7.mockapi.io/app/users/${id}`)
   .pipe(
      map(data => {

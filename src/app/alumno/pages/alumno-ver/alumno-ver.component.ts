@@ -6,6 +6,7 @@ import { AlumnoCurso } from 'src/app/Core/Models/i-alumnos';
 import { Observable } from 'rxjs';
 import { Cursos } from 'src/app/Core/Models/i-cursos';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { classAlumno } from 'src/app/Core/Models/alumno.model';
 
 @Component({
   selector: 'app-alumno-ver',
@@ -14,8 +15,10 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 })
 export class AlumnoVerComponent implements OnInit {
 
-  
-@Input() alumno!: Alumnos;
+
+//public alumno!: any;
+
+public alumno: Alumnos;
 
 public cursos$: Observable<Cursos[]>;
 public alumno$: Observable<Alumnos[]>;
@@ -30,6 +33,13 @@ public alumno$: Observable<Alumnos[]>;
     this.cursos$ = this.cursoService.curso$;
     this.alumno$ = this.alumnoService.alumno$;
     this.alumno = data;
+  //   this.alumno = new classAlumno(
+  //     data.id, 
+  //     data.nombres, 
+  //     data.apellido, 
+  //     data.estado,
+  //     data.email,
+  //     data.cursos);
   }
 
    datosCurso(idCurso: string, nomCurso:string){
@@ -41,8 +51,10 @@ public alumno$: Observable<Alumnos[]>;
   }
    
    agregarCursoAlumno(data: AlumnoCurso){
-   this.alumno.cursos = data;   
-   this.alumnoService.editarAlumno(this.alumno)
+   //this.alumno.cursos.push([{data}]);
+   //this.alum.cursos
+   console.log(typeof this.alumno.cursos)
+   //this.alumnoService.editarAlumno(this.alumno)
   }
   
   Desinscribir(){
