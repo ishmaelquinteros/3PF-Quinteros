@@ -16,11 +16,13 @@
         
         
         <form [formGroup]="formUser" [hidden]="tokenOK == false">
-        <h5>Seleccione su usuario</h5>
-        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+        <p class="text-success alert-success text-center">¡El login fue correcto!</p>
+        <p class="text-center">Seleccione de la lista su usuario</p>
+        <select class="form-select form-select-lg mb-3"
         [formControl]="controlUsuario"
         (change)="capturar()">
-            <option *ngFor="let user of User$ | async" 
+        <option disabled>--Aguarde mientras se cargan usuarios--</option>   
+        <option selected  *ngFor="let user of User$ | async" 
             value={{user.id}}
             >{{user.first_name}}</option>  
         

@@ -24,7 +24,9 @@
   width: 10%;
   text-decoration: none;
 }
-
+li{
+  color:aliceblue
+}
 .router-outlet-container {
   padding: 20px;
   display: flex;

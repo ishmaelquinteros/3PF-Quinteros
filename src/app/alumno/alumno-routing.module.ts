@@ -5,11 +5,15 @@ import { AlumnoListComponent } from './pages/alumno-list/alumno-list.component';
 import { AlumnoVerComponent } from './pages/alumno-ver/alumno-ver.component';
 
 const routes: Routes = [
-  { path: '', component: AlumnoListComponent },
-  { path: 'verAlumnos', 
-  component: AlumnoVerComponent,
-  canActivate: [CheckAdminGuard]  
-}
+  { path: '', 
+  component: AlumnoListComponent, 
+  children: [
+    { path: 'verAlumnos', 
+    component: AlumnoVerComponent,
+    canActivate: [CheckAdminGuard] 
+  },
+  ]
+},
 ];
   
 @NgModule({

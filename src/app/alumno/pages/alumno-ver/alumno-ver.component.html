@@ -1,27 +1,28 @@
-<h2> Inscripcion alumno a cursos </h2>
+<h2 class="text-center" style="font-weight:bolder;"> Inscripcion a cursos </h2>
 
-<h3> Alumno selecionado: {{alumno.nombres}} </h3>
+<h3> Alumno selecionado: {{alumno.nombres}} {{alumno.apellido}} </h3>
 <table class="table">
     <thead>
-        <tr class="table-secondary">
+        <tr class="table-primary">
             <th scope="col">ID</th>
             <th scope="col">Nombre Curso</th>
             <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
-        <tr>
+        <tr class="table-light">
             <th scope="row">{{alumno.cursos.idCurso}}</th>
             <td>{{alumno.cursos.nombreCurso}}</td>
-            <td *ngIf="(alumno.cursos.idCurso)"><button mat-button (click)="Desinscribir()">Desinscribir</button></td>
+            <td *ngIf="(alumno.cursos.idCurso)">
+            <button mat-raised-button color="primary" (click)="Desinscribir()">Desinscribir</button></td>
         <tr>
     </tbody>
 </table>
 
-<h5>Cursos disponibles</h5>
-<div class="p-20 d-flex gap-20 flex-wrap m-3">
+<h3>Cursos disponibles</h3>
+<div class="p-20 d-flex flex-row gap-20 flex-wrap m-3">
     <div *ngFor="let curso of (cursos$ | async)">
-        <mat-card class="producto-card">
+        <mat-card class="color-info m-3">
             <mat-card-header>
                 <mat-card-title>{{curso.nombre}}</mat-card-title>
             </mat-card-header>
@@ -34,7 +35,7 @@
             </mat-card-actions>
         </mat-card>
     </div>
-    <div mat-dialog-actions>
-        <button mat-button color="primary" [matDialogClose] (click)=Cerrar() cdkFocusInitial>Cerrar</button>
+    <div mat-dialog-actions class="flex-end">
+        <button mat-raised-button color="primary" [matDialogClose] (click)=Cerrar() cdkFocusInitial>Cerrar</button>
     </div>
 </div>

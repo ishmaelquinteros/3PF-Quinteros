@@ -46,9 +46,10 @@ datosCurso(dataId: string, dataNombre:string){
 
 Desinscribir(){
     const data = {
-      idCurso: "",
-      nombreCurso:""
+      'idAlumno': "",
+      'nombreAlumno':""
     }
+  this.curso.alumnos = data;
   this.cursoService.editarCurso(this.curso);  
   }
 

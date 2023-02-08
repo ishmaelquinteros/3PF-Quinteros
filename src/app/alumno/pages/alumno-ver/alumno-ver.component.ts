@@ -59,9 +59,10 @@ public alumno$: Observable<Alumnos[]>;
   
   Desinscribir(){
       const data = {
-        idCurso: "",
-        nombreCurso:""
+        'idCurso': "",
+        'nombreCurso':""
       }
+    this.alumno.cursos = data;
     this.alumnoService.editarAlumno(this.alumno);  
     }
 
