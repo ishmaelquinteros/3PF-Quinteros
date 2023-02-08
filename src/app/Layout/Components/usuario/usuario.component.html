@@ -1,0 +1,11 @@
+<div class="d-flex flex-row align-items-center">
+<div class="d-flex flex-column" style="font-size: 1rem;">
+    <small> Usuario: {{nombreUsuario | json}}</small>
+    <small> Rol: {{rolUsuario | json}} </small>
+</div>
+<div>
+    <button mat-button color="accent" 
+    style="background-color: white" 
+    (click)="terminarSesion()">Cerrar Sesion</button>
+</div>
+</div>

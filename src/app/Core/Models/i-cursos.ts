@@ -4,5 +4,9 @@ export interface Cursos {
     descripcion: string,
     fechaInicio: Date,
     horasTotal: number,
-    alumnos: []
+    alumnos: CursoAlumno
+}
+export interface CursoAlumno{
+    idAlumno: string,
+    nombreAlumno: string,
 }

@@ -10,7 +10,7 @@
             <input type="password" matInput placeholder="Contraseña" formControlName="password">
         </div>
         <div class="col-12">
-          <button class="form-button" (click)="login()">Iniciar sesión</button>
+          <button  id="buttonInicio" class="form-button" (click)="login()">Iniciar sesión</button>
         </div>
     
         
@@ -18,7 +18,7 @@
         <form [formGroup]="formUser" [hidden]="tokenOK == false">
         <h5>Seleccione su usuario</h5>
         <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
-        [formControl]="FormUsuario"
+        [formControl]="controlUsuario"
         (change)="capturar()">
             <option *ngFor="let user of User$ | async" 
             value={{user.id}}

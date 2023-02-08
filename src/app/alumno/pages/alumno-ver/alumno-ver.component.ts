@@ -5,7 +5,7 @@ import { Alumnos } from 'src/app/Core/Models/i-alumnos';
 import { AlumnoCurso } from 'src/app/Core/Models/i-alumnos';
 import { Observable } from 'rxjs';
 import { Cursos } from 'src/app/Core/Models/i-cursos';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { classAlumno } from 'src/app/Core/Models/alumno.model';
 
 @Component({
@@ -16,9 +16,7 @@ import { classAlumno } from 'src/app/Core/Models/alumno.model';
 export class AlumnoVerComponent implements OnInit {
 
 
-//public alumno!: any;
-
-public alumno: Alumnos;
+public alumno!: Alumnos;
 
 public cursos$: Observable<Cursos[]>;
 public alumno$: Observable<Alumnos[]>;
@@ -34,27 +32,29 @@ public alumno$: Observable<Alumnos[]>;
     this.alumno$ = this.alumnoService.alumno$;
     this.alumno = data;
   //   this.alumno = new classAlumno(
-  //     data.id, 
-  //     data.nombres, 
-  //     data.apellido, 
-  //     data.estado,
-  //     data.email,
-  //     data.cursos);
-  }
+  //        data.id, 
+  //        data.nombres, 
+  //        data.apellido, 
+  //        data.estado,
+  //        data.email,
+  //        data.cursos.idCurso,
+  //        data.cursos.nombreCurso,
+  // )
+}
 
    datosCurso(idCurso: string, nomCurso:string){
-    const data = {
+    const dataCurso = {
       'idCurso' : idCurso,
       'nombreCurso': nomCurso
     }  
-    this.agregarCursoAlumno(data)
+    this.agregarCursoAlumno(dataCurso)
   }
    
    agregarCursoAlumno(data: AlumnoCurso){
    //this.alumno.cursos.push([{data}]);
    //this.alum.cursos
-   console.log(typeof this.alumno.cursos)
-   //this.alumnoService.editarAlumno(this.alumno)
+   this.alumno.cursos = data;
+   this.alumnoService.editarAlumno(this.alumno)
   }
   
   Desinscribir(){
@@ -62,9 +62,9 @@ public alumno$: Observable<Alumnos[]>;
         idCurso: "",
         nombreCurso:""
       }
-    this.alumno.cursos = data;  
-    this.alumnoService.editarAlumno(this.alumno)  
+    this.alumnoService.editarAlumno(this.alumno);  
     }
+
   Cerrar() {
     this.dialogRef.close();
   }

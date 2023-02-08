@@ -12,7 +12,10 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class LoginServiceService {
 
-  private loggedIn = new BehaviorSubject<boolean>(false)
+  private loggedIn = new BehaviorSubject<boolean>(false);
+
+  // private user = new BehaviorSubject<User | null>(null);
+  // public user$ = this.user.asObservable();
 
   constructor(private http: HttpClient) {
    }
@@ -44,13 +47,17 @@ checkToken (){
   userToken ? this.loggedIn.next(true) : this.logout()
 }
 
-getUserLocalStorage(){
-  return localStorage.getItem('user')
+getUserName(){
+  return localStorage.getItem('userNombre')
+}
+getUserRol(){
+  return localStorage.getItem('userRol')
 }
 
 logout(){
-  localStorage.clear()
-  this.loggedIn.next(false)
+  localStorage.removeItem('token');
+  localStorage.removeItem('user');
+  this.loggedIn.next(false);
 }
 
 obtenerUsuarioId(id: string){
@@ -58,7 +65,8 @@ obtenerUsuarioId(id: string){
   .pipe(
      map(data => {
       new classUser(data.id,data.first_name, data.last_name,data.rol),      
-      localStorage.setItem('user', JSON.stringify(data))
+      localStorage.setItem('userNombre', data.last_name),
+      localStorage.setItem('userRol', data.rol)
      }),
      catchError((err) => this.handlerError(err)),
      );

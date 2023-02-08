@@ -56,7 +56,7 @@ export class CursosListComponent implements OnInit {
         descripcion: this.descripcionControl.value!,
         horasTotal: this.horasControl.value!,
         fechaInicio: fechaCurso,
-        alumnos: []  
+        alumnos: {'idAlumno':"", 'nombreAlumno':""}
       })
       this.cursos$ = this.cursoService.getCursosApi()
       this.cursosForm.reset();

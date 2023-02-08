@@ -8,6 +8,7 @@ import { MLayoutRoutesRoutingModule } from './m-layout-routes-routing.module';
 import { ModuloSharedModule } from '../Shared/modulo-shared.module';
 import { PantallaErrorComponent } from './Pages/pantalla-error/pantalla-error.component';
 import { WrapperPageComponent } from './Pages/wrapper-page/wrapper-page.component';
+import { UsuarioComponent } from './Components/usuario/usuario.component';
 
 
 
@@ -18,7 +19,8 @@ import { WrapperPageComponent } from './Pages/wrapper-page/wrapper-page.componen
     MainComponent,
     PantallaErrorComponent,
     WrapperPageComponent,
-    DialogConfirmacionComponent
+    DialogConfirmacionComponent,
+    UsuarioComponent
   ],
   imports: [
     CommonModule,

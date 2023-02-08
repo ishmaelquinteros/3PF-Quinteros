@@ -1,16 +1,23 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanLoad, Route, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { map, Observable, take } from 'rxjs';
+import { LoginServiceService } from '../Service/login-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccesoGuard implements CanActivate, CanActivateChild, CanLoad {
+  
+  constructor(private loginSvc: LoginServiceService){}
+  
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
-  }
+      return this.loginSvc.isLogged.pipe(
+      take(1),map((isLogged: boolean) => !isLogged)
+      );  
+    }
+
   canActivateChild(
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {

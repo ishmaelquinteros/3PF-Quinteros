@@ -1,1 +1,38 @@
-<p>cursos-ver works!</p>
+<h3> Alumno selecionado: {{curso.nombre}} </h3>
+<table class="table">
+    <thead>
+        <tr class="table-secondary">
+            <th scope="col">ID</th>
+            <th scope="col">Nombre Curso</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">{{curso.alumnos.idAlumno}}</th>
+            <td>{{curso.alumnos.nombreAlumno}}</td>
+            <td *ngIf="(curso.alumnos.idAlumno)"><button mat-button (click)="Desinscribir()">Desinscribir</button></td>
+        <tr>
+    </tbody>
+</table>
+
+<h5>Cursos disponibles</h5>
+<div class="p-20 d-flex gap-20 flex-wrap m-3">
+    <div *ngFor="let alumno of (alumno$ | async)">
+        <mat-card class="producto-card">
+            <mat-card-header>
+                <mat-card-title>{{alumno.nombres}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>{{alumno.apellido}}</p>
+                <p>{{alumno.estado}}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button color="primary" (click)="datosCurso(alumno.id, alumno.nombres)">Inscribir</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button color="primary" [matDialogClose] (click)=Cerrar() cdkFocusInitial>Cerrar</button>
+    </div>
+</div>
