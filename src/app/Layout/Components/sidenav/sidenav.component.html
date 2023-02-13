@@ -12,13 +12,16 @@
       </ul>
     </div>
 
-         
-        <ul *ngIf="administrador">
+    <ng-template [ngIf]="administrador">
+      <div>
+        <ul>
           <li>
             <a class="nav-link" routerLink="usuarios">Usuarios</a>
           </li>
         </ul>
-        
+    </div>
+    </ng-template>
+
   <app-wrapper-page></app-wrapper-page>
   </div>
 </div>
