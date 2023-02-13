@@ -1,26 +1,27 @@
 <div class="material-container">
   <app-head></app-head>
   <div class="main-content">
-    <div class="lista-menu color-primary">
-      <ul class="nav flex-column">
-        <li class="nav-item text-white">
-          <a class="nav-link" routerLink="alumnos">Alumnos</a>
-        </li>
-        <li class="nav-item text-white">
-          <a class="nav-link" routerLink="cursos">Cursos</a>
-        </li>
-      </ul>
-    </div>
-
-    <ng-template [ngIf]="administrador">
-      <div>
-        <ul>
-          <li>
-            <a class="nav-link" routerLink="usuarios">Usuarios</a>
+      <div class="lista-menu color-primary">
+        <ul class="nav flex-column">
+          <li class="nav-item text-white">
+            <a class="nav-link" routerLink="alumnos">Alumnos</a>
+          </li>
+          <li class="nav-item text-white">
+            <a class="nav-link" routerLink="cursos">Cursos</a>
           </li>
         </ul>
-    </div>
-    </ng-template>
+        <ng-container *ngIf="administrador">
+          <div class="lista-menu color-primary">
+            <ul class="nav">
+              <li class="nav-item text-white">
+                <a class="nav-link" routerLink="usuarios">Usuarios</a>
+              </li>
+            </ul>
+        </div>
+        </ng-container>
+      </div>
+
+    
 
   <app-wrapper-page></app-wrapper-page>
   </div>

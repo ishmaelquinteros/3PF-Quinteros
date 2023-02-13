@@ -16,10 +16,8 @@ export class CheckAdminGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    
-    return this.userSvc.isAdmin.pipe(take(1),
-    map((admin: boolean) => admin));
-    
-  } 
+      return this.userSvc.isAdmin.pipe(
+        take(1),map((isAdmi: boolean) => isAdmi)); 
+      }
   
 }

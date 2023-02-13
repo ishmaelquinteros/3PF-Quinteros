@@ -13,7 +13,8 @@ export class UserService {
   constructor(private http: HttpClient) { 
     
   }
-  
+  private UrlUser: string = "https://63d9687fbaa0f79e09bb9ed7.mockapi.io/app/users/";
+
   private Admin = new BehaviorSubject<boolean>(false);
   private user = new BehaviorSubject<User | null>(null);
   public user$ = this.user.asObservable();
@@ -23,7 +24,7 @@ export class UserService {
  } 
 
   obtenerUsuarios(){
-    return this.http.get<User>("https://63d9687fbaa0f79e09bb9ed7.mockapi.io/app/users/")
+    return this.http.get<User>(this.UrlUser);
   
   }
 
@@ -60,8 +61,15 @@ export class UserService {
   }
 
   agregarUsuario(user: User) {
-
-    throw new Error('Method not implemented.');
+    this.http.post(`${this.UrlUser}`, user).subscribe({
+      next: _ => {
+      this.user$ = this.obtenerUsuarios()
+      },
+      error: _ => {
+        alert('Ocurrio un error');
+      }
+    });
+    
   }
 
 }
