@@ -26,7 +26,7 @@ export class AlumnosService {
         'content-type' : 'application/json'
       })
       }
-    ).pipe(catchError(err => throwError(() => new Error('Error!'))));
+    ).pipe(catchError(err => throwError(() => new Error(`Error + ${err}`))));
   }    
   
   eliminarAlumno(alumno: Alumnos) {

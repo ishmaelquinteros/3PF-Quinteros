@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { map, Observable, take } from 'rxjs';
 import { LoginServiceService } from 'src/app/Login/Service/login-service.service';
+import { UserService } from 'src/app/Users/Services/user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CheckAdminGuard implements CanActivate {
-  constructor(private loginSvc: LoginServiceService){}
+  constructor(private userSvc: UserService){}
   
   tipoUsuario!: string | null
   tipoRespuesta!: boolean
@@ -16,12 +17,9 @@ export class CheckAdminGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     
-    this.tipoUsuario = this.loginSvc.getUserRol()
+    return this.userSvc.isAdmin.pipe(take(1),
+    map((admin: boolean) => admin));
     
-    if (this.tipoUsuario !== "ADMINISTRADOR"){
-      this.tipoRespuesta = false ;
-    }; 
-    return this.tipoRespuesta;
   } 
   
 }

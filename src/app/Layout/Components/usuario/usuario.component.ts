@@ -4,6 +4,7 @@ import { Observable, take } from 'rxjs';
 import { User } from 'src/app/Core/Models/i-user';
 import { classUser } from 'src/app/Core/Models/user.models';
 import { LoginServiceService } from 'src/app/Login/Service/login-service.service';
+import { UserService } from 'src/app/Users/Services/user.service';
 
 @Component({
   selector: 'app-usuario',
@@ -12,13 +13,14 @@ import { LoginServiceService } from 'src/app/Login/Service/login-service.service
 })
 export class UsuarioComponent implements OnInit {
 
-  constructor(private loginSvc: LoginServiceService,
+  constructor(private serviceUser: UserService, 
+    private serviceLog: LoginServiceService,
     private route: Router) {
-      if (this.loginSvc.getUserName()){
-        this.nombreUsuario = this.loginSvc.getUserName()
+      if (this.serviceUser.getUserName()){
+        this.nombreUsuario = this.serviceUser.getUserName()
       }
-      if (this.loginSvc.getUserRol()){
-        this.rolUsuario = this.loginSvc.getUserRol()
+      if (this.serviceUser.getUserRol()){
+        this.rolUsuario = this.serviceUser.getUserRol()
       }
      
       // this.loginSvc.user$.subscribe((user) => {
@@ -38,7 +40,7 @@ export class UsuarioComponent implements OnInit {
   
 
   terminarSesion(){
-    this.loginSvc.logout();
+    this.serviceLog.logout();
     this.route.navigate(["/login"])    
   }
 

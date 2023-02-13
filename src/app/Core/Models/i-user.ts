@@ -4,7 +4,3 @@ export interface User {
     last_name: string,
     rol: string,
 }
-
-export interface LoginOk {
-    token: string
-}

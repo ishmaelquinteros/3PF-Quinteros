@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/Core/Models/i-user';
+import { UserService } from 'src/app/Users/Services/user.service';
 import { LoginServiceService } from '../../Service/login-service.service';
 @Component({
   selector: 'app-vista-inicio',
@@ -18,7 +19,9 @@ export class VistaInicioComponent implements OnInit {
   public User$: Observable<any> | undefined;
 
   constructor(
-    private loginService: LoginServiceService, private router: Router
+    private loginService: LoginServiceService, 
+    private userService: UserService,
+    private router: Router
   ) { 
     this.formulario = new FormGroup({
       email: new FormControl('eve.holt@reqres.in', [Validators.required, Validators.email]),
@@ -37,14 +40,14 @@ export class VistaInicioComponent implements OnInit {
     password: this.formulario.get('password')?.value }
     this.loginService.login(user).subscribe((respuesta) => {(
       this.loginService.setToken(JSON.stringify(respuesta)),
-      this.User$ = this.loginService.obtenerUsuarios(),
+      this.User$ = this.userService.obtenerUsuarios(),
       this.tokenOK = true
     )})
   }
   
   capturar() {
   const idUser = this.controlUsuario.value;
-  this.loginService.obtenerUsuarioId(idUser).subscribe(_ => {
+  this.userService.obtenerUsuarioId(idUser).subscribe(_ => {
     this.router.navigate(['/app'])})
   }
     

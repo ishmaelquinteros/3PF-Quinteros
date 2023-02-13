@@ -17,6 +17,11 @@ const routes: Routes = [
       loadChildren: () => import('../Cursos/cursos.module').then(m => m.CursosModule),
       canActivate: [CheckLoginGuard]
     },
+    {
+      path: 'usuarios',
+      loadChildren: () => import('../Users/m-users.module').then(m => m.MUsersModule),
+      canActivate: [CheckLoginGuard]
+    },
   ]
 }
  
