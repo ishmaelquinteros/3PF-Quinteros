@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
+import { Component, OnInit } from '@angular/core';
 import { map, Observable, take } from 'rxjs';
 import { UserService } from 'src/app/Users/Services/user.service';
 
@@ -16,9 +15,6 @@ export class SidenavComponent implements OnInit {
   
   } 
     
-      
-    
-  
   ngOnInit(): void {
     if (this.userSrv.getUserRol()){
       const userRol = this.userSrv.getUserRol()
