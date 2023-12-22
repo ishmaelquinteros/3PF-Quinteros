@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanLoad, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
 import { map, Observable, take } from 'rxjs';
 import { LoginServiceService } from '../Service/login-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AccesoGuard implements CanActivate, CanActivateChild, CanLoad {
+export class AccesoGuard  {
   
   constructor(private loginSvc: LoginServiceService, router: Router){}
   
